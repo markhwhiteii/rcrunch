@@ -1,4 +1,10 @@
 # crunch (development version)
+## Breaking changes
+* `interactVariables()` now uses server side logic to create categories so that it's faster,
+but the `sep` argument is no longer supported (it's always set to `" and "`) and the category
+order will not be the same.
+
+## Minor changes
 * https verification can be disabled during testing by setting environment variable `R_TEST_VERIFY_SSL=FALSE`
 
 # crunch 1.26.3
