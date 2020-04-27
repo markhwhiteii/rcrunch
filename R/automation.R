@@ -1,3 +1,50 @@
+init.sortCatalog <- function(.Object, ...) {
+    ## Sort a ShojiCatalog by the object's "names" (as defined by its names method)
+    .Object <- callNextMethod(.Object, ...)
+    .Object@index <- .Object@index[order(names(.Object))]
+    return(.Object)
+}
+
+setMethod("initialize", "ScriptCatalog", init.sortCatalog)
+
+#' Crunch Automation scripts entities for a dataset
+#'
+#' @param x a CrunchDataset
+#' @return an object of class ScriptCatalog containing references to
+#' Script entities.
+#' @name script-catalog
+#' @aliases scripts
+NULL
+
+#' @rdname script-catalog
+#' @export
+setMethod("scripts", "CrunchDataset", function(x) {
+    ScriptCatalog(crGET(shojiURL(x, "catalogs", "scripts")))
+})
+
+#' @rdname crunch-extract
+#' @export
+setMethod("[[", c("ScriptCatalog", "numeric"), function(x, i, ...) {
+    getEntity(x, i, Script, ...)
+})
+
+#' @rdname describe-catalog
+#' @export
+setMethod("timestamps", "ScriptCatalog", function(x) {
+    return(from8601(getIndexSlot(x, "creation_time")))
+})
+
+#' @rdname describe-catalog
+#' @export
+setMethod("scriptBody", "ScriptCatalog", function(x) {
+    return(getIndexSlot(x, "body"))
+})
+#' @rdname describe-catalog
+#' @export
+setMethod("scriptBody", "Script", function(x) {
+    return(x@body$body)
+})
+
 #' Run a crunch automation script
 #'
 #' Crunch automation is a custom scripting syntax that allows you to

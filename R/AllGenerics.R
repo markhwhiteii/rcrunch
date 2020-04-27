@@ -51,6 +51,8 @@ setGeneric("ids<-", function(x, value) standardGeneric("ids<-"))
 setGeneric("values", function(x) standardGeneric("values"))
 #' @rdname describe-catalog
 setGeneric("values<-", function(x, value) standardGeneric("values<-"))
+setGeneric("scriptBody", function(x) standardGeneric("scriptBody"))
+#' @rdname describe-catalog
 
 setGeneric("names")
 setGeneric("names<-")
@@ -228,6 +230,7 @@ setGeneric("weightVariables<-", function(x, value) standardGeneric("weightVariab
 setGeneric("is.weightVariable<-", function(x, value) standardGeneric("is.weightVariable<-"))
 setGeneric("is.weight<-", function(x, value) standardGeneric("is.weight<-"))
 setGeneric("whichCatalogEntry", function(x, i, ...) standardGeneric("whichCatalogEntry"))
+setGeneric("scripts", function(x) standardGeneric("scripts"))
 
 setGeneric("owner", function(x) standardGeneric("owner"))
 setGeneric("owner<-", function(x, value) standardGeneric("owner<-"))
