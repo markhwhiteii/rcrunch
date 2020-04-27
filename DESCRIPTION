@@ -64,6 +64,7 @@ Collate:
     'as-data-frame.R'
     'as-vector.R'
     'auth.R'
+    'automation.R'
     'batches.R'
     'case-variables.R'
     'categories.R'
