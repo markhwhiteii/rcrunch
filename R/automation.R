@@ -75,11 +75,11 @@ runCrunchAutomation <- function(dataset, script, is_file = string_is_file_like(s
     }
 
     crPOST(
-        shojiURL(ds, "catalogs", "scripts"),
-        body = toJSON(wrapEntity(body = list(body = automation_script))),
+        shojiURL(dataset, "catalogs", "scripts"),
+        body = toJSON(wrapEntity(body = list(body = script))),
         status.handlers = list(`400` = crunchAutomationErrorHandler)
     )
-    invisible(refresh(ds))
+    invisible(refresh(dataset))
 }
 
 
