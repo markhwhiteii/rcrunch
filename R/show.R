@@ -233,7 +233,12 @@ formatScriptCatalog <- function(x, from = Sys.time(), body_width = 20) {
         }
     }, character(1))
 
-    return(data.frame(Timestamp = ts, scriptBody = scriptBody, stringsAsFactors = FALSE, row.names = NULL))
+    return(data.frame(
+        Timestamp = ts,
+        scriptBody = scriptBody,
+        stringsAsFactors = FALSE,
+        row.names = NULL
+    ))
 }
 
 .operators <- c("+", "-", "*", "/", "<", ">", ">=", "<=", "==", "!=", "&", "|", "%in%")
