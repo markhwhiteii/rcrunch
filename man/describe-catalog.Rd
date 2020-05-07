@@ -24,6 +24,7 @@
 \alias{names<-,AbstractCategories-method}
 \alias{ids,AbstractCategories-method}
 \alias{timestamps,ScriptCatalog-method}
+\alias{timestamps,Script-method}
 \alias{scriptBody,ScriptCatalog-method}
 \alias{scriptBody,Script-method}
 \alias{names,BatchCatalog-method}
@@ -100,6 +101,8 @@ names(x)
 \S4method{ids}{AbstractCategories}(x)
 
 \S4method{timestamps}{ScriptCatalog}(x)
+
+\S4method{timestamps}{Script}(x)
 
 \S4method{scriptBody}{ScriptCatalog}(x)
 

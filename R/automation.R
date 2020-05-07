@@ -36,6 +36,12 @@ setMethod("timestamps", "ScriptCatalog", function(x) {
 
 #' @rdname describe-catalog
 #' @export
+setMethod("timestamps", "Script", function(x) {
+    return(from8601(x@body$creation_time))
+})
+
+#' @rdname describe-catalog
+#' @export
 setMethod("scriptBody", "ScriptCatalog", function(x) {
     return(getIndexSlot(x, "body"))
 })
@@ -110,8 +116,14 @@ crunchAutomationErrorHandler <- function(response) {
         crunch_automation_error_env$script <- request_body$body$body
 
         # And convert the full information of the error messages into a data.frame
-        errors <- lapply(automation_messages, as.data.frame)
-        crunch_automation_error_env$errors <- do.call(rbind, errors)
+        errors <- lapply(
+            automation_messages,
+            function(x) as.data.frame(x, stringsAsFactors = FALSE)
+        )
+        crunch_automation_error_env$errors <- do.call(
+            function(x) rbind(x, stringsAsFactors = FALSE),
+            errors
+        )
 
         automation_messages <- vapply(
             automation_messages,
