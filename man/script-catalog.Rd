@@ -12,7 +12,7 @@
 \item{x}{a CrunchDataset}
 }
 \value{
-an object of class ScriptCatalog containing references to
+an object of class "ScriptCatalog" containing references to
 Script entities.
 }
 \description{

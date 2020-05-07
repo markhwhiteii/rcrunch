@@ -14,6 +14,7 @@
 \alias{types}
 \alias{emails}
 \alias{timestamps}
+\alias{scriptBody}
 \alias{names}
 \alias{names<-}
 \alias{ids}
@@ -91,8 +92,6 @@ ids(x) <- value
 values(x)
 
 values(x) <- value
-
-names(x)
 
 \S4method{names}{AbstractCategories}(x)
 

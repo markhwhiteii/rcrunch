@@ -10,7 +10,7 @@ setMethod("initialize", "ScriptCatalog", init.sortCatalog)
 #' Crunch Automation scripts entities for a dataset
 #'
 #' @param x a CrunchDataset
-#' @return an object of class ScriptCatalog containing references to
+#' @return an object of class "ScriptCatalog" containing references to
 #' Script entities.
 #' @name script-catalog
 #' @aliases scripts

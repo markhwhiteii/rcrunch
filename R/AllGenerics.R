@@ -20,7 +20,7 @@
 #' @return Getters return the character object in the specified slot; setters
 #' return `x` duly modified.
 #' @aliases describe-catalog aliases aliases<- descriptions descriptions<-
-#' types emails timestamps names names<-
+#' types emails timestamps scriptBody names names<-
 #' @seealso [`Subvariables`] [`Categories`] [base::names()]
 #' `vignette("variables", package="crunch")`
 #' @rdname describe-catalog
@@ -52,7 +52,7 @@ setGeneric("values", function(x) standardGeneric("values"))
 #' @rdname describe-catalog
 setGeneric("values<-", function(x, value) standardGeneric("values<-"))
 setGeneric("scriptBody", function(x) standardGeneric("scriptBody"))
-#' @rdname describe-catalog
+
 
 setGeneric("names")
 setGeneric("names<-")
