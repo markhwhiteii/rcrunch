@@ -190,41 +190,14 @@ showOrderGroup <- function(x, index, key = "name") {
 
 formatVersionCatalog <- function(x, from = Sys.time()) {
     ts <- timestamps(x)
-    if (!is.null(from)) {
-        ts <- vapply(seq_along(ts), function(a) {
-            ## Grab dates by sequence because POSIXt is a list internally
-            ## (i.e. lapply does the wrong thing)
-            this <- from - ts[a]
-            num <- as.integer(this)
-            un <- attr(this, "units")
-            if (num == 1) {
-                ## Make singular
-                un <- sub("s$", "", un)
-            }
-            out <- paste(num, un, "ago")
-            return(out)
-        }, character(1))
-    }
+    ts <- .ts_format(ts, from)
     return(data.frame(Name = names(x), Timestamp = ts, stringsAsFactors = FALSE))
 }
 
 formatScriptCatalog <- function(x, from = Sys.time(), body_width = 20) {
     ts <- timestamps(x)
-    if (!is.null(from)) {
-        ts <- vapply(seq_along(ts), function(a) {
-            ## Grab dates by sequence because POSIXt is a list internally
-            ## (i.e. lapply does the wrong thing)
-            this <- from - ts[a]
-            num <- as.integer(this)
-            un <- attr(this, "units")
-            if (num == 1) {
-                ## Make singular
-                un <- sub("s$", "", un)
-            }
-            out <- paste(num, un, "ago")
-            return(out)
-        }, character(1))
-    }
+    ts <- .ts_format(ts, from)
+
     scriptBody <- vapply(scriptBody(x), function(script) {
         if (nchar(script) > body_width) {
             paste0(strtrim(script, max(body_width - 3, 0)), "...")
@@ -239,6 +212,25 @@ formatScriptCatalog <- function(x, from = Sys.time(), body_width = 20) {
         stringsAsFactors = FALSE,
         row.names = NULL
     ))
+}
+
+.ts_format <- function(ts, from = NULL) {
+    if (!is.null(from)) {
+        ts <- vapply(seq_along(ts), function(a) {
+            ## Grab dates by sequence because POSIXt is a list internally
+            ## (i.e. lapply does the wrong thing)
+            this <- from - ts[a]
+            num <- as.integer(this)
+            un <- attr(this, "units")
+            if (num == 1) {
+                ## Make singular
+                un <- sub("s$", "", un)
+            }
+            out <- paste(num, un, "ago")
+            return(out)
+        }, character(1))
+    }
+    ts
 }
 
 .operators <- c("+", "-", "*", "/", "<", ">", ">=", "<=", "==", "!=", "&", "|", "%in%")

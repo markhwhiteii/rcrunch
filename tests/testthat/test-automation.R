@@ -69,6 +69,21 @@ with_mock_crunch({
         expect_equal(scriptBody(ds_scripts[[1]]), script_text)
     })
 
+    test_that("Scripts catalog print method", {
+        expect_identical(
+            formatScriptCatalog(
+                scripts(ds),
+                from = strptime("2020-05-09", "%Y-%m-%d"),
+                body_width = 10
+            ),
+            data.frame(
+                Timestamp = c("2 days ago"),
+                scriptBody = paste0(strtrim(script_text, 7), "..."),
+                stringsAsFactors = FALSE
+            )
+        )
+    })
+
     test_that("Can get script checkpoint version", {
         expect_GET(
             scriptCheckpointVersion(scripts(ds)[[1]]),
