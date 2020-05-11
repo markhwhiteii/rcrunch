@@ -44,10 +44,10 @@ with_mock_crunch({
 
     test_that("Query shape is right when overriding the is_file argument", {
         expect_POST(
-            runCrunchAutomation(ds, temp, is_file = FALSE),
+            runCrunchAutomation(ds, "file.txt", is_file = FALSE),
             "https://app.crunch.io/api/datasets/1/scripts/",
             '{"element":"shoji:entity",',
-            '"body":{"body":"', temp, '"}}'
+            '"body":{"body":"file.txt"}}'
         )
     })
 
