@@ -60,7 +60,7 @@ is.script <- function(x) inherits(x, "Script")
 #' Get the version associated with the dataset right before a crunch
 #' automation script was run.
 #'
-#' @param x
+#' @param x A `Script` object
 #'
 #' @return A version list object that can be used in [`restoreVersion()`]
 #' @export
@@ -87,6 +87,28 @@ scriptCheckpointVersion <- function(x) {
 #' For `crunchAutomationFailure()`, when run after a failure, a list with two items:
 #' `script`: that contains the script string sent to the server and `errors` which is a
 #' `data.frame` with details about the errors sent from the server.
+#' @examples
+#' \dontrun{
+#' # Can use a path to a file:
+#' script_file <- "crunch_automation.txt"
+#' ds <- runCrunchAutomation(ds, script_file)
+#'
+#' # Or a string directly:
+#' ds <- runCrunchAutomation(ds, "RENAME v1 TO age;")
+#'
+#' # After a failed run, some error information prints to console,
+#' # But more details are available with function:
+#' crunchAutomationFailure()
+#'
+#' # After a successful, can look at scripts
+#' script_info <- scripts(ds)
+#' script_info
+#'
+#' # And even get the version information from the checkpoint before running
+#' ds <- restoreVersion(ds, scriptCheckpointVersion(script_info[[1]]))
+#'
+#'
+#' }
 #' @export
 runCrunchAutomation <- function(dataset, script, is_file = string_is_file_like(script)) {
     stopifnot(is.dataset(dataset))

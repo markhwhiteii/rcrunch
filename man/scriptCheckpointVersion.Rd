@@ -7,7 +7,7 @@
 scriptCheckpointVersion(x)
 }
 \arguments{
-\item{x}{}
+\item{x}{A \code{Script} object}
 }
 \value{
 A version list object that can be used in \code{\link[=restoreVersion]{restoreVersion()}}
