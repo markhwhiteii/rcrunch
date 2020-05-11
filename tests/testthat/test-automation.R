@@ -68,6 +68,15 @@ with_mock_crunch({
         )
         expect_equal(scriptBody(ds_scripts[[1]]), script_text)
     })
+
+    test_that("Can get script checkpoint version", {
+        expect_GET(
+            scriptCheckpointVersion(scripts(ds)[[1]]),
+            "https://app.crunch.io/api/datasets/1/savepoints/v2/"
+        )
+    })
+
+
     ds2 <- loadDataset("ECON.sav")
 
     test_that("Can interpret information from a script failure", {

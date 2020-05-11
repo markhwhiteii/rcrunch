@@ -51,6 +51,24 @@ setMethod("scriptBody", "Script", function(x) {
     return(x@body$body)
 })
 
+#' @rdname crunch-is
+#' @export
+is.script <- function(x) inherits(x, "Script")
+
+#' Get the version saved prior to running a crunch automation script
+#'
+#' Get the version associated with the dataset right before a crunch
+#' automation script was run.
+#'
+#' @param x
+#'
+#' @return A version list object that can be used in [`restoreVersion()`]
+#' @export
+scriptCheckpointVersion <- function(x) {
+    stopifnot(is.script(x))
+    return(crGET(shojiURL(x, "views", "savepoint"))$body)
+}
+
 #' Run a crunch automation script
 #'
 #' Crunch automation is a custom scripting syntax that allows you to
